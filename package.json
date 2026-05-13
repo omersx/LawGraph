@@ -1,0 +1,15 @@
+{
+  "name": "legal-agent",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently --names \"BACKEND,FRONTEND\" --prefix-colors \"magenta,cyan\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && venv\\Scripts\\python.exe -m app.main",
+    "dev:frontend": "cd frontend && npm run dev",
+    "install:all": "cd frontend && npm install && cd ../legal-mcp/govinfo-mcp && npm install && cd ../courtlistener-mcp && npm install",
+    "setup": "npm install && npm run install:all"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

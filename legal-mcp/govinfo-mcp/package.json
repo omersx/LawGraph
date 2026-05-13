@@ -1,0 +1,22 @@
+{
+  "name": "govinfo-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for GovInfo API",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "mcp",
+    "govinfo",
+    "ai",
+    "tools"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "axios": "^1.6.0"
+  }
+}
