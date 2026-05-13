@@ -5,9 +5,9 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" />
 </p>
 
-# ⚖️ Legal AI Agent
+# ⚖️ LawGraph
 
-**An autonomous legal reasoning system powered by a 9-node LangGraph pipeline, grounded in real U.S. case law and federal statutes via the Model Context Protocol (MCP).**
+**An autonomous legal reasoning system powered by a 10-node LangGraph pipeline, grounded in real U.S. case law and federal statutes via the Model Context Protocol (MCP).**
 
 > Most legal AI tools are wrappers around a chat model with a prompt. This system retrieves real legal data from CourtListener and GovInfo, applies structured IRAC reasoning, validates citations against retrieved sources, and streams the entire reasoning process to the user in real time.
 
@@ -24,7 +24,7 @@ Access to legal information is broken:
 
 ## 💡 The Solution
 
-Legal AI Agent provides **grounded, citation-backed legal analysis** using a multi-stage reasoning pipeline that:
+LawGraph provides **grounded, citation-backed legal analysis** using a multi-stage reasoning pipeline that:
 
 1. **Retrieves real legal data** from authoritative sources (not from the model's training data)
 2. **Applies structured IRAC reasoning** (Issue → Rule → Application → Conclusion) — the gold standard in legal analysis
@@ -55,7 +55,7 @@ Legal AI Agent provides **grounded, citation-backed legal analysis** using a mul
 │                  FastAPI Backend (Python)                    │
 │                                                             │
 │  ┌─────────────────────────────────────────────────────┐    │
-│  │              LangGraph 9-Node Pipeline              │    │
+│  │              LangGraph 10-Node Pipeline             │    │
 │  │                                                     │    │
 │  │  START → Preprocessor → Followup Detector           │    │
 │  │         → Context Resolver → Classifier             │    │
@@ -381,7 +381,7 @@ This system is designed with safety and transparency at its core:
 ## 📁 Project Structure
 
 ```
-legal-agent/
+LawGraph/
 ├── backend/
 │   ├── app/
 │   │   ├── config.py              # Environment configuration
