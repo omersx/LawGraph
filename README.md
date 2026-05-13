@@ -101,29 +101,27 @@ pip install -r requirements.txt
 cp .env.example .env        # Edit with your API keys
 ```
 
-### 3. MCP Servers
+### 3. Install All Dependencies
 
 ```bash
-cd legal-mcp/govinfo-mcp && npm install
-cd ../courtlistener-mcp && npm install
+# From the project root — installs frontend + MCP servers in one go
+npm run setup
 ```
 
-### 4. Frontend Setup
+### 4. Run the App
+
+A single command starts both the FastAPI backend and Next.js frontend simultaneously:
 
 ```bash
-cd frontend
-npm install
+npm run dev
 ```
 
-### 5. Run
-
-```bash
-# Terminal 1 — Backend
-cd backend && python -m app.main
-
-# Terminal 2 — Frontend
-cd frontend && npm run dev
 ```
+[BACKEND]  Uvicorn running on http://0.0.0.0:8000
+[FRONTEND] Next.js running on http://localhost:3000
+```
+
+> The root `package.json` uses [concurrently](https://www.npmjs.com/package/concurrently) to run both services in parallel with color-coded output.
 
 Open **http://localhost:3000** and ask your first legal question.
 
