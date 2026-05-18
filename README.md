@@ -11,7 +11,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/LangGraph-10_Node_Pipeline-blue?style=for-the-badge" />
   <img src="https://img.shields.io/badge/MCP-Stdio_Protocol-green?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Gemini-Flash-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Gemma-4-blue?style=for-the-badge" />
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" />
 </p>
 
@@ -55,7 +55,11 @@ LawGraph retrieves **real U.S. case law and federal statutes** via the Model Con
     <img src="https://github.com/user-attachments/assets/07cb3478-a92f-474f-99cb-b0bc2af8738a" width="350"/>
   </a>
 </p>
+
+
 ---
+
+
 ## 🏗️ Architecture
 
 ```
