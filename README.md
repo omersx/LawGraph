@@ -159,7 +159,7 @@ Open **http://localhost:3000** and ask your first legal question.
 ```env
 # Required
 GOOGLE_API_KEY=your_gemini_api_key
-GEMINI_MODEL=gemini-3.0-flash
+GEMINI_MODEL=gemma-4-31b-it
 
 # MCP Servers
 MCP_GOVINFO_SERVER_PATH=../legal-mcp/govinfo-mcp/server.js
@@ -185,7 +185,7 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 | Frontend | Next.js, React, Vanilla CSS, SSE |
 | Backend | FastAPI, Python, Uvicorn |
 | Orchestration | LangGraph (StateGraph) |
-| LLM | Google Gemini Flash (configurable) |
+| LLM | Google Gemma-4 (configurable) |
 | Tools | Model Context Protocol (MCP) via stdio |
 | Visualization | react-force-graph-2d, D3 |
 | Legal Data | CourtListener API, GovInfo API |
