@@ -37,7 +37,6 @@ LawGraph retrieves **real U.S. case law and federal statutes** via the Model Con
 
 ## ✨ UI
 
-## ✨ UI
 
 <p align="center">
   <a href="https://github.com/user-attachments/assets/7280845b-b333-4727-a17e-69a441fd13c0">
@@ -47,9 +46,12 @@ LawGraph retrieves **real U.S. case law and federal statutes** via the Model Con
   <a href="https://github.com/user-attachments/assets/9e34f9e6-7853-43f9-869f-ae74327b8538">
     <img src="https://github.com/user-attachments/assets/9e34f9e6-7853-43f9-869f-ae74327b8538" width="250"/>
   </a>
+  <a href="https://github.com/user-attachments/assets/c2f238ab-e361-4ada-902a-eee50e3bf52b">
+    <img src="https://github.com/user-attachments/assets/c2f238ab-e361-4ada-902a-eee50e3bf52b" width="250"/>
+  </a>
 
-  <a href="https://github.com/user-attachments/assets/48ddfdfc-7d65-474f-be14-678a02b39f3b">
-    <img src="https://github.com/user-attachments/assets/48ddfdfc-7d65-474f-be14-678a02b39f3b" width="250"/>
+  <a href="https://github.com/user-attachments/assets/07cb3478-a92f-474f-99cb-b0bc2af8738a">
+    <img src="https://github.com/user-attachments/assets/07cb3478-a92f-474f-99cb-b0bc2af8738a" width="250"/>
   </a>
 </p>
 
