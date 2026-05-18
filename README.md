@@ -34,28 +34,27 @@ LawGraph retrieves **real U.S. case law and federal statutes** via the Model Con
 - **PDF Export** — Generate professional legal memo reports  
 
 ---
-
 ## ✨ UI
-
 
 <p align="center">
   <a href="https://github.com/user-attachments/assets/7280845b-b333-4727-a17e-69a441fd13c0">
-    <img src="https://github.com/user-attachments/assets/7280845b-b333-4727-a17e-69a441fd13c0" width="250"/>
+    <img src="https://github.com/user-attachments/assets/7280845b-b333-4727-a17e-69a441fd13c0" width="350"/>
   </a>
 
   <a href="https://github.com/user-attachments/assets/9e34f9e6-7853-43f9-869f-ae74327b8538">
-    <img src="https://github.com/user-attachments/assets/9e34f9e6-7853-43f9-869f-ae74327b8538" width="250"/>
-  </a>
-  <a href="https://github.com/user-attachments/assets/c2f238ab-e361-4ada-902a-eee50e3bf52b">
-    <img src="https://github.com/user-attachments/assets/c2f238ab-e361-4ada-902a-eee50e3bf52b" width="250"/>
-  </a>
-
-  <a href="https://github.com/user-attachments/assets/07cb3478-a92f-474f-99cb-b0bc2af8738a">
-    <img src="https://github.com/user-attachments/assets/07cb3478-a92f-474f-99cb-b0bc2af8738a" width="250"/>
+    <img src="https://github.com/user-attachments/assets/9e34f9e6-7853-43f9-869f-ae74327b8538" width="350"/>
   </a>
 </p>
 
+<p align="center">
+  <a href="https://github.com/user-attachments/assets/c2f238ab-e361-4ada-902a-eee50e3bf52b">
+    <img src="https://github.com/user-attachments/assets/c2f238ab-e361-4ada-902a-eee50e3bf52b" width="350"/>
+  </a>
 
+  <a href="https://github.com/user-attachments/assets/07cb3478-a92f-474f-99cb-b0bc2af8738a">
+    <img src="https://github.com/user-attachments/assets/07cb3478-a92f-474f-99cb-b0bc2af8738a" width="350"/>
+  </a>
+</p>
 ---
 ## 🏗️ Architecture
 
