@@ -12,6 +12,7 @@
   <img src="https://img.shields.io/badge/LangGraph-10_Node_Pipeline-blue?style=for-the-badge" />
   <img src="https://img.shields.io/badge/MCP-Stdio_Protocol-green?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Gemma-4-blue?style=for-the-badge" />
+  <a href="https://huggingface.co/omersx/LawGraph-legal-gemma4-31b-gguf"><img src="https://img.shields.io/badge/🤗_Fine--Tuned-LawGraph--legal--gemma4--31b-orange?style=for-the-badge" /></a>
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" />
 </p>
 
@@ -94,7 +95,7 @@ LawGraph retrieves **real U.S. case law and federal statutes** via the Model Con
 | 5 | Planner | Generate tool call strategy |
 | 6 | Tool Executor | Execute MCP tool calls |
 | 7 | Aggregator | Deduplicate, rank, filter sources |
-| 8 | Reasoner | IRAC analysis over sources |
+| 8 | **Reasoner** | IRAC analysis via [fine-tuned LawGraph-legal-gemma4-31b](https://huggingface.co/omersx/LawGraph-legal-gemma4-31b-gguf) |
 | 9 | Formatter | Validate and structure output |
 | 10 | Graph Extractor | Extract entities and relationships |
 
@@ -152,6 +153,28 @@ Open **http://localhost:3000** and ask your first legal question.
 
 ---
 
+## 🧠 Fine-Tuned Legal Reasoning Model
+
+LawGraph's **Reasoner node** is powered by a custom fine-tuned model built specifically for structured legal analysis:
+
+> **[LawGraph-legal-gemma4-31b-gguf](https://huggingface.co/omersx/LawGraph-legal-gemma4-31b-gguf)** — A fine-tuned Gemma 4 31B model trained on legal reasoning tasks to produce IRAC-structured analysis with grounded citations.
+
+The model is available in GGUF format for local inference. You can run it with any OpenAI-compatible server (e.g., [llama.cpp](https://github.com/ggerganov/llama.cpp), [Ollama](https://ollama.ai), [LM Studio](https://lmstudio.ai)) and point LawGraph to it via the `REASONING_MODEL_URL` environment variable.
+
+```bash
+# Example: serve the model with llama.cpp
+./llama-server -m LawGraph-legal-gemma4-31b.Q4_K_M.gguf --port 8080
+```
+
+Then set in your `backend/.env`:
+```env
+REASONING_MODEL_URL=http://localhost:8080/v1/chat/completions
+```
+
+> If no external reasoning model is configured, LawGraph falls back to the default Gemini model for reasoning.
+
+---
+
 ## ⚙️ Configuration
 
 ### Backend (`backend/.env`)
@@ -165,9 +188,10 @@ GEMINI_MODEL=gemma-4-31b-it
 MCP_GOVINFO_SERVER_PATH=../legal-mcp/govinfo-mcp/server.js
 MCP_COURTLISTENER_SERVER_PATH=../legal-mcp/courtlistener-mcp/server.js
 
-# Optional: External reasoning model
-# REASONING_MODEL_URL=https://your-model-endpoint/v1/chat/completions
-# REASONING_MODEL_API_KEY=your_key
+# Optional: Fine-tuned reasoning model (recommended)
+# See: https://huggingface.co/omersx/LawGraph-legal-gemma4-31b-gguf
+REASONING_MODEL_URL=http://localhost:8080/v1/chat/completions
+# REASONING_MODEL_API_KEY=your_key  # if your server requires auth
 ```
 
 ### Frontend (`frontend/.env.local`)
@@ -185,7 +209,7 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 | Frontend | Next.js, React, Vanilla CSS, SSE |
 | Backend | FastAPI, Python, Uvicorn |
 | Orchestration | LangGraph (StateGraph) |
-| LLM | Google Gemma-4 (configurable) |
+| LLM | Google Gemma-4 + [fine-tuned LawGraph-legal-gemma4-31b](https://huggingface.co/omersx/LawGraph-legal-gemma4-31b-gguf) |
 | Tools | Model Context Protocol (MCP) via stdio |
 | Visualization | react-force-graph-2d, D3 |
 | Legal Data | CourtListener API, GovInfo API |
