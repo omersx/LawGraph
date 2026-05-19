@@ -1,6 +1,7 @@
 """MCP Client — connects to local stdio-based MCP servers (govinfo + courtlistener)."""
 
 from __future__ import annotations
+import asyncio
 import json
 import logging
 import os
@@ -29,6 +30,7 @@ _WRAPPER_SCRIPT = str(
 _sessions: dict[str, ClientSession] = {}
 _exit_stack: AsyncExitStack | None = None
 _initialized = False
+_init_lock = asyncio.Lock()
 
 
 def _build_server_configs() -> list[tuple[str, StdioServerParameters]]:
@@ -74,33 +76,39 @@ async def _ensure_sessions() -> None:
     if _initialized:
         return
 
-    _exit_stack = AsyncExitStack()
-    configs = _build_server_configs()
+    # Use a lock to prevent parallel tool calls from racing to initialize
+    async with _init_lock:
+        # Double-check after acquiring the lock
+        if _initialized:
+            return
 
-    for name, params in configs:
-        try:
-            logger.info(f"Starting MCP server: {name} ({params.command} {params.args})")
+        _exit_stack = AsyncExitStack()
+        configs = _build_server_configs()
 
-            # stdio_client returns a context manager yielding (read, write) streams
-            transport = await _exit_stack.enter_async_context(stdio_client(params))
-            read_stream, write_stream = transport
+        for name, params in configs:
+            try:
+                logger.info(f"Starting MCP server: {name} ({params.command} {params.args})")
 
-            session = await _exit_stack.enter_async_context(
-                ClientSession(read_stream, write_stream)
-            )
-            await session.initialize()
+                # stdio_client returns a context manager yielding (read, write) streams
+                transport = await _exit_stack.enter_async_context(stdio_client(params))
+                read_stream, write_stream = transport
 
-            # Log available tools
-            tools = await session.list_tools()
-            tool_names = [t.name for t in tools.tools]
-            logger.info(f"MCP server '{name}' ready — tools: {tool_names}")
+                session = await _exit_stack.enter_async_context(
+                    ClientSession(read_stream, write_stream)
+                )
+                await session.initialize()
 
-            _sessions[name] = session
+                # Log available tools
+                tools = await session.list_tools()
+                tool_names = [t.name for t in tools.tools]
+                logger.info(f"MCP server '{name}' ready — tools: {tool_names}")
 
-        except Exception as e:
-            logger.error(f"Failed to start MCP server '{name}': {e}")
+                _sessions[name] = session
 
-    _initialized = True
+            except Exception as e:
+                logger.error(f"Failed to start MCP server '{name}': {e}")
+
+        _initialized = True
 
 
 # ──────────────────────────────────────────────────

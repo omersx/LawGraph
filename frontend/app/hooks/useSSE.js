@@ -71,15 +71,18 @@ export function useSSE() {
                 break;
 
               case "step_started":
-                setSteps((prev) => [
-                  ...prev,
-                  {
-                    id: payload.step_id,
-                    node: payload.node,
-                    label: payload.label,
-                    status: "active",
-                  },
-                ]);
+                setSteps((prev) => {
+                  if (prev.some((s) => s.id === payload.step_id)) return prev;
+                  return [
+                    ...prev,
+                    {
+                      id: payload.step_id,
+                      node: payload.node,
+                      label: payload.label,
+                      status: "active",
+                    },
+                  ];
+                });
                 break;
 
               case "step_completed":
@@ -97,15 +100,18 @@ export function useSSE() {
                 break;
 
               case "tool_started":
-                setSteps((prev) => [
-                  ...prev,
-                  {
-                    id: payload.tool_call_id,
-                    node: "tool",
-                    label: payload.label,
-                    status: "active",
-                  },
-                ]);
+                setSteps((prev) => {
+                  if (prev.some((s) => s.id === payload.tool_call_id)) return prev;
+                  return [
+                    ...prev,
+                    {
+                      id: payload.tool_call_id,
+                      node: "tool",
+                      label: payload.label,
+                      status: "active",
+                    },
+                  ];
+                });
                 break;
 
               case "tool_result":
@@ -183,6 +189,8 @@ export function useSSE() {
           }
         },
 
+        openWhenHidden: true, // Keep connection alive even if tab is hidden
+
         onerror(err) {
           console.error("SSE error:", err);
           setIsRunning(false);
@@ -191,7 +199,11 @@ export function useSSE() {
         },
 
         onclose() {
+          // Abort the controller to prevent fetchEventSource from retrying
+          // the POST request. Without this, it re-sends the same message
+          // to /api/chat, creating a duplicate pipeline run.
           setIsRunning(false);
+          ctrl.abort();
         },
       });
     } catch (err) {
