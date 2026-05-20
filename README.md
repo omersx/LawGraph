@@ -113,7 +113,7 @@ LawGraph retrieves **real U.S. case law and federal statutes** via the Model Con
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/LawGraph.git
+git clone https://github.com/omersx/LawGraph.git
 cd LawGraph
 ```
 
